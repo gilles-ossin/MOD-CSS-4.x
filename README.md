@@ -1,4 +1,4 @@
-[![MOD-CSS's GitHub Banner](beta.mod-css.net/media/Mod-4.x-banner-w.png)](https://mod-css.com)
+[![MOD-CSS's GitHub Banner](./static/img/Mod-4.x-banner-w.png)](https://mod-css.com)
 
 [![Website](https://img.shields.io/badge/Website-informational?style=flat&logo=html5&logoColor=white&color=1CA2F1)](https://mod-css.com/)
 [![CodePen Badge](https://img.shields.io/badge/CodePen-Profile-informational?style=flat&logo=codepen&logoColor=white&color=white)](https://codepen.io/mod-css/)
