@@ -29,7 +29,7 @@ We support setting of Selector, breakpoints, flexgrid, states, any CSS propertie
 * [Js Functions](#js)
 * [Fully customizable Flexgrid](#flex)
 * [Set Pseudos on any component](#sta)
-* [Call any style](#prop)
+* [Multi-setter](#prop)
 * [Tips](#multi)
 
 
