@@ -1,10 +1,8 @@
-[![MOD-CSS's GitHub Banner](./static/img/Mod-3.x-banner.png)](https://mod-css.com)
+[![MOD-CSS's GitHub Banner](beta.mod-css.net/media/Mod-4.x-banner-w.png)](https://mod-css.com)
 
 [![Website](https://img.shields.io/badge/Website-informational?style=flat&logo=html5&logoColor=white&color=1CA2F1)](https://mod-css.com/)
 [![CodePen Badge](https://img.shields.io/badge/CodePen-Profile-informational?style=flat&logo=codepen&logoColor=white&color=white)](https://codepen.io/mod-css/)
-[![Youtube Badge](https://img.shields.io/badge/Youtube-Profile-informational?style=flat&logo=youtube&logoColor=white&color=red)](https://youtube.com/mod-css)
 [![Demo Page](https://img.shields.io/badge/Demo-Page-informational?style=flat&logo=html&logoColor=white&color=1CA2F1)](https://mod-css.com/demo)
-[![Javascript Badge](https://img.shields.io/badge/Single-file-informational?style=flat&logo=javascript&logoColor=yellow&color=1CA2F1)]()
 [![Javascript Badge](https://img.shields.io/badge/Lightweight-10kb-informational?style=flat&logo=javascript&logoColor=yellow&color=4AB197)]()
 
 MOD-CSS is a free utility CSS framework for front-end development. It's can be used to design web page or any website.
@@ -28,6 +26,7 @@ We support setting of Selector, breakpoints, flexgrid, states, any CSS propertie
 * [How to use it](#how)
 * [Define quickly any selector](#sel)
 * [Standards breakpoints for reponsiveness](#brkp)
+* [Js Functions](#js)
 * [Fully customizable Flexgrid](#flex)
 * [Set Pseudos on any component](#sta)
 * [Call any style](#prop)
@@ -39,8 +38,8 @@ We support setting of Selector, breakpoints, flexgrid, states, any CSS propertie
 
 ```html
 <head>
-    <!--Only add this and let's go !-->
-    <script src="https://cdn.jsdelivr.net/gh/modsLabs/MOD-CSS-3.x@main/Mod-3.x.min.js">
+    <!--Only add this and data-var's go !-->
+    <script src="https://cdn.jsdelivr.net/gh/gilles-ossin/MOD-CSS-4.x@main/dist/mod-4.x.min.js">
 </head>
 ```
 
@@ -56,128 +55,52 @@ co[blue]                /* ==> color: blue */
 p[var(--px)]            /* ==> padding: var(--px) */
 ```
 
-2. We use custom attributes which start with ***:*** , main attributes are ***mod*** and ***:var*** .
+1. We use custom attributes which are ***mod*** and ***:var*** .
 
 ```html
 <div mod="col$[50%]"><div>   <!-- Use :mod to set only flexgrid props-->
 <div mod="w[100px] p[9px] fo.sz[10px] co[#f4f4f4]"><div>    <!-- Use mod all properties -->
-<div mod="trn[all .3s ease] && hover: m.lf[6px]"><div>   
-<div :var=".rdx:checked +label{co[#7d33ff !important]}"><div>    <!-- Use for selectors -->
+
+<div :var=".rdx:checked +label { co[#7d33ff !important]} "><div>    <!-- Use for defining selectors -->
 ```
+
+### Javascript Functions
+
+<h4 style="color:#FFA500" id="js">🆕 NEW FEATURE</h4> 
+Js functions *render(elt: string | HTMLElement, modcss: string)* & *renderInline(elt: string | HTMLElement, modcss: string)*
+
+```js
+    //Define any selector via 
+    let MOD = new MODCSS()
+    MOD.render('#li', 'bg[#202020] co[#ddd] tx.al[center] br[4px] p[6px] bd[1px solid #fff] && hover*focus: bg[orange]')
+    //or
+    MOD.renderInline(elt, 'bg[#202020] co[#ddd] tx.al[center] br[4px] p[6px] bd[1px solid #fff]')
+
+```
+
 <h4 style="color:#FFA500">🆕 NEW FEATURE</h4> 
 > In our new version, you can define own attributes to improve compatibility with others frameworks JS based.
 
 ```javascript
 <script>
    ModCSS.attributes({
-     props: 'xyz',
-     var: 'let',
+     props: 'data-mod',
+     var: 'data-var',
     })
 </script>
 ```
 
 ```html
    <div mod="row[100%]">
-       <div xyz="col$[5rem] co[orange]">5rem</div>
-       <div mod="col[25%]">25%</div>
+       <div data-mod="col$[5rem] co[orange]">5rem</div>
+       <div data-mod="col[25%]">25%</div>
    </div>
 
-   <div let=".col{ col$[auto] h[10px] }">auto</div>
+   <div data-var=".col { col$[auto] h[10px] }">auto</div>
 ```
 
-3. Cheatsheet and almost supported properties can be found [here](https://mod-css.com/documentation/cheatsheet/#Cheatsheet)
+1. Cheatsheet and almost supported properties can be found [here](https://mod-css.com/documentation/cheatsheet/#Cheatsheet)
 
-
-### Selector
-
-<div id="sel"><div>
-In MOD-CSS, you can quickly define any selector(s) directly in your template by using our custom styles,  
-like below :
-
-*1. With single tag*
-
-```html
-<div :var="pre { w[100%] wsp[pre-line] }"></div>
-```
-
-```css
-/*CSS equivalent*/
-pre { 
-    width:100%; 
-    white-space:pre-line; 
-    }
-```
-
-*2. With an id*
-
-```html
-<div :var="#dialog { h[100px] w[100vw] bg[#10101020] }"></div>  
-```
-
-```css
-/*CSS equivalent*/
-#dialog { 
-    height:100px; 
-    width:100vw; 
-    background:#10101020; 
-    }
-```
-
-*3. With class*
-
-```html
-<div :var=".link { bg.co[#f8f8f850] m[1px 0px] p[4px 3px] br[3px] && hover:bg.co[#f8f8f8] }"></div>
-```
-
-```css
-/*CSS equivalent*/
-.link { 
-    background-color:#f8f8f850; 
-    margin: 1px 0px;
-    padding: 4px 3px;
-    border-radius: 3px;
-    }
-.link:hover { 
-    background-color:#f8f8f8; 
-    }
-```
-
-*4. Mixed types*
-
-```html
-<div :var="pre, #dialog, .link:hover, [data-id='4'] { bg[white] bd[.25px solid #eee] p[4px 3px] fo.sz[13px] fo.wg[600] }"></div>
-```
-
-```css
-/*CSS equivalent*/
-.pre, #dialog, .link:hover, [data-id='4'] { 
-    background: white; 
-    border: 0.25px solid #eee;
-    padding: 4px 3px;
-    font-size: 13px;
-    font-weight: 600;
-    }
-```
-<h4 style="color:#FFA500">🆕 NEW FEATURE</h4> 
-*5. (New) Define with our grid properties*
-
-```html
-<!-- Define custom row selector -->
-<div :var=".row-100 { row$[100%] tx.al[center] fo.sz[13px] fo.wg[600] }"></div>
-```
-
-```css
-/*CSS equivalent*/
-.row-100 { 
-    width: 100%;
-    display: inline-flex; 
-    flex-direction: row; 
-    flex-wrap: wrap;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 600;
-   }
-```
 
 ---
 
@@ -185,7 +108,7 @@ pre {
 
 <div id="brkp"><div> 
 We have a breakpoint management feature that allows you to create specific styles for different screen sizes.  
-So, you can easily adapt your design for smartphone, tablet, laptop and more...  
+So, you can easily adapt your design for smartphone, tabdata-var, laptop and more...  
 We support six breakpoints :
 
 
@@ -201,7 +124,7 @@ We support six breakpoints :
 For calling, use [breakpoint] followed by **?** .
 Ex: *md?* , *lg?*
 
-#### Practice
+#### Examples
 
 >⚠️ Noticed, when you don't set a breakpoint, value works on any screen.
 > It is on this principle that we will define the others breakpoints while maintaining a default behavior.
@@ -257,6 +180,57 @@ div {
 
 ---
 
+### Selector
+
+<div id="sel"><div>
+In MOD-CSS, you can quickly define any selector(s) directly in your template by using our custom styles,  
+like below :
+
+*1. With a single tag, an id, class or any selecter supported by CSS3*
+
+```html
+<div :var="pre { w[100%] wsp[pre-line] }"></div>
+<div :var="#dialog { h[100px] w[100vw] bg[#10101020] }"></div>  
+<div :var=".link { bg.co[#f8f8f850] m[1px 0px] p[4px 3px] br[3px] && hover:bg.co[#f8f8f8] }"></div>
+<div :var="pre, #dialog, .link:hover, [data-id='4'] { bg[white] bd[.25px solid #eee] p[4px 3px] fo.sz[13px] fo.wg[600] }"></div>
+
+```
+
+```css
+/*CSS equivalent*/
+pre { 
+    width:100%; 
+    white-space:pre-line; 
+    }
+
+#dialog { 
+    height:100px; 
+    width:100vw; 
+    background:#10101020; 
+    }
+
+.link { 
+    background-color:#f8f8f850; 
+    margin: 1px 0px;
+    padding: 4px 3px;
+    border-radius: 3px;
+    }
+
+.link:hover { 
+    background-color:#f8f8f8; 
+    }
+
+.pre, #dialog, .link:hover, [data-id='4'] { 
+    background: white; 
+    border: 0.25px solid #eee;
+    padding: 4px 3px;
+    font-size: 13px;
+    font-weight: 600;
+    }
+```
+
+---
+
 ### Flexgrid
 <div id="flex"><div> 
 
@@ -264,7 +238,7 @@ MOD features a revolutionary n-columns grid system that allows you to create fle
 It support natively automatique sizing, fit-content, precise sizing, gap and offseting.
 You can use any css unit to set them, call many flexbox properties to align, evenly distribute and precisely manage element dimensions.
 
-#### Practice
+#### Exzmples
 
 *a. Set a basic grid with a container, one row and two columns*
 
@@ -390,7 +364,7 @@ You can use any css unit to set them, call many flexbox properties to align, eve
 
 ---
 
-### Pseudos
+### Pseudos/ states
 <h4 style="color:#FFA500">🆕 NEW FEATURE / fully support pseudo-element *before, after ...*</h4> 
 
 <div id="sta"><div>
