@@ -64,30 +64,49 @@ p[var(--px)]            /* ==> padding: var(--px) */
 <div :var=".rdx:checked +label { co[#7d33ff !important]} "><div>    <!-- Use for defining selectors -->
 ```
 
-### Javascript Functions
+### JAVASCRIPT FUNCTIONS
 
-<h4 style="color:#FFA500" id="js">🆕 NEW FEATURE</h4> 
-Js functions *render(elt: string | HTMLElement, modcss: string)* & *renderInline(elt: string | HTMLElement, modcss: string)*
+<h4 style="color:#FFA500" id="js">🆕 NEW FEATURES</h4> 
 
 ```js
     //Define any selector via 
     let MD = new MODCSS()
     MD.render('#li', 'bg[#202020] co[#ddd] tx.al[center] br[4px] p[6px] bd[1px solid #fff] && hover*focus: bg[orange]')
-    //or
-    MD.renderInline(elt, 'bg[#202020] co[#ddd] tx.al[center] br[4px] p[6px] bd[1px solid #fff]')
+    // or
+    htmlElt.render('bg[#202020] co[#ddd] tx.al[center] br[4px] p[6px] bd[1px solid #fff] && hover*focus: bg[orange]')
 
 ```
 
-<h4 style="color:#FFA500">🆕 NEW FEATURE</h4> 
-> In our new version, you can define own attributes to improve compatibility with others frameworks JS based.
+ 
+```js
+    // For setting style inline on Any Elt
+    MD.renderInline(elt, 'bg[#202020] co[#ddd] tx.al[center] br[4px] p[6px] bd[1px solid #fff]')
+    // or
+    htmlElt.renderInline('bg[#202020] co[#ddd] tx.al[center] br[4px] p[6px] bd[1px solid #fff]')
 
-```javascript
-<script>
-   ModCSS.attributes({
+```
+
+
+```js
+    // To insert in Stylesheet one or many selector 
+    MD.insert(`
+        .w-100 { w[100%] }
+        .col-50 { $col[50%] co[maroon] }
+        .btn { hover: bg[blue] && before:: co[gray] h*w[50px] }
+        .container { p[2% 4%] bg[#25252598] container$[98%] || lg? container$[90%] }
+        .btn-dark { bg[#202020] co[#ddd] tx.al[center] br[4px] p[6px] ot[one] bd[1px solid #fff] && hover*focus: bg[orange] } 
+        [col='25%'] { col$[25%] co[orange] bg[lightblue] }
+        div > small { fo.sz[12px] ln.h[.8] }
+    `)
+
+```
+
+```js
+    // Define custom attributes to serve your settings.
+    MD.attributes({
      props: 'data-mod',
      var: 'data-var',
     })
-</script>
 ```
 
 ```html
@@ -98,8 +117,6 @@ Js functions *render(elt: string | HTMLElement, modcss: string)* & *renderInline
 
    <div data-var=".col { col$[auto] h[10px] }">auto</div>
 ```
-
-1. Cheatsheet and almost supported properties can be found [here](https://mod-css.com/documentation/cheatsheet/#Cheatsheet)
 
 
 ---
@@ -156,27 +173,8 @@ div {
 <div mod="md? hover: w[80%] || lg? hover: w[76%] || xxl? w[72%]"></div>
 ```
 
-```css
-/*CSS equivalent*/
-div { 
-    width: 100%;
-    padding: 6px;
-    }
-@media only screen and (min-width: 768px) {
-    div:hover { 
-        width: 80%;
-    }
-@media only screen and (min-width: 992px) {
-    div:hover { 
-        width: 76%;
-    }
-@media only screen and (min-width: 1400px) {
-    div { 
-        width: 72%;
-    }
-}
-```
 
+Cheatsheet and almost supported properties can be found [here](https://mod-css.com/documentation/cheatsheet/#Cheatsheet)
 [Read more >](https://mod-css.com/documentation/breakpoints/)
 
 ---
